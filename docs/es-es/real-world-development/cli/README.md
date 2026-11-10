@@ -1,57 +1,74 @@
 ---
 slug: es-es/real-world-development/cli
 title: "GitHub Copilot CLI"
+description: "Desarrolla, verifica y entrega dos cambios de Tailspin Toys mientras aprendes a usar los modos, las personalizaciones, las herramientas MCP y la automatización de pull requests de Copilot CLI."
 authors:
   - geektrainer
-lastUpdated: 2026-06-30
+lastUpdated: 2026-09-18
 ---
 
-**[GitHub Copilot CLI](https://docs.github.com/copilot/concepts/agents/about-copilot-cli)** incorpora GitHub Copilot a tu terminal como asistente de programación con agentes. Explora bases de código, genera código, ejecuta comandos y se conecta a herramientas externas, todo desde la línea de comandos, para que puedas mantener el flujo sin cambiar a un editor gráfico.
+**[GitHub Copilot CLI][about-copilot-cli]** incorpora GitHub Copilot a tu terminal como asistente de programación con agentes. Explora bases de código, genera código, ejecuta comandos y se conecta a herramientas externas, todo desde la línea de comandos para que puedas mantener el flujo sin cambiar a un editor gráfico.
 
-A lo largo de estos ejercicios instalarás y autenticarás Copilot CLI, y después le darás contexto del proyecto con instrucciones personalizadas antes de usar el modo de planificación para generar una funcionalidad de forma deliberada. Conectarás el servidor MCP de Playwright para probar esa funcionalidad en un navegador real y, a continuación, ampliarás Copilot con habilidades de agente reutilizables y agentes personalizados. Por último, explorarás los comandos de barra para gestionar el contexto, los modelos y el uso compartido, y terminarás con un repaso de lo que has creado. También puedes seguir una [serie opcional de tres módulos con GitHub Copilot CLI y Foundry][foundry] para preparar un modelo, crear y desplegar un agente hospedado e integrarlo en el sitio.
+El taller sigue un flujo de trabajo continuo en Tailspin Toys:
 
-## Ejercicios
+1. Prepara el proyecto en GitHub Codespaces, instala Copilot CLI y familiarízate con él.
+2. Haz un cambio acotado en la valoración con estrellas, revísalo en el navegador y combina manualmente tu primera pull request (PR).
+3. Empieza por la incidencia de filtrado, define el enfoque en modo Plan, crea la funcionalidad en modo Autopilot y revísala en modo Interactive.
+4. Actualiza las instrucciones del repositorio y aplícalas al filtrado.
+5. Personaliza la habilidad `quality-checks` existente y úsala para ejecutar las comprobaciones del proyecto.
+6. Añade el servidor Model Context Protocol (MCP) de Playwright y úsalo para explorar el filtrado en un navegador.
+7. Crea un agente personalizado de control de calidad (QA) y úsalo para revisar los requisitos, la cobertura y las evidencias de verificación.
+8. Revisa todos los cambios de filtrado y utiliza Agent Merge para la PR correspondiente.
+9. Explora comandos slash útiles para gestionar el contexto y los modelos, compartir sesiones y delegar tareas en la nube de forma opcional.
 
-| Ejercicio | Tema | Descripción |
-|----------|-------|-------------|
-| [0. Requisitos previos][ex0] | Configuración | Crea tu repositorio y tu codespace |
-| [1. Instalación de Copilot CLI][ex1] | Instalación | Instala y autentica Copilot CLI |
-| [2. Instrucciones personalizadas][ex2] | Contexto | Añade una instrucción y comprueba cómo la sigue Copilot CLI |
-| [3. Generación de código][ex3] | Generación de código | Usa el modo de planificación y genera funcionalidades |
-| [4. Pruebas con Playwright MCP][ex4] | Herramientas externas | Añade el servidor MCP de Playwright y prueba tu funcionalidad en un navegador |
-| [5. Habilidades de agente][ex5] | Habilidades | Mejora Copilot con habilidades especializadas |
-| [6. Agentes personalizados][ex6] | Agentes | Revisa y usa agentes personalizados |
-| [7. Comandos de barra][ex7] | Funciones de CLI | Explora el contexto, los modelos, el uso compartido y la delegación opcional al agente en la nube |
-| [9. Repaso][ex9] | Resumen | Repasa los conceptos clave y los próximos pasos |
-| [Opcional: incorpora Foundry][foundry] | Agentes hospedados | Prepara un modelo, crea y despliega el concierge y conéctalo al sitio web en tres módulos |
+Para mantener el taller centrado, crearás dos PR: una para la valoración con estrellas y otra para el filtrado, las actualizaciones de instrucciones y de la habilidad, el perfil de control de calidad y las pruebas. El flujo de filtrado y control de calidad comparte una conversación y una rama para que puedas aprovechar el trabajo realizado mientras exploras cada herramienta.
+
+## Lecciones
+
+| Lección | Tema | Descripción |
+| ------ | ----- | ----------- |
+| [0. Requisitos previos][ex0] | Configuración | Crea el repositorio y el Codespace |
+| [1. Instalar Copilot CLI][ex1] | Instalación | Instala y autentica Copilot CLI y familiarízate con él |
+| [2. Añadir valoraciones con estrellas: una mejora rápida][ex2] | Primer cambio | Muestra las valoraciones existentes y el estado sin valorar; después combina tu primera PR |
+| [3. Modos de agente: Plan y Autopilot][ex3] | Modos de agente | Planifica la funcionalidad a partir de su incidencia, créala con Autopilot y revísala en modo Interactive |
+| [4. Guiar a Copilot con instrucciones personalizadas][ex4] | Contexto | Explora y actualiza las instrucciones y aplícalas al filtrado |
+| [5. Personalizar y usar una habilidad de comprobación de calidad][ex5] | Comprobaciones repetibles | Explora la habilidad existente, cambia el formato del informe y ejecútala |
+| [6. Validar la funcionalidad con Playwright MCP][ex6] | Observación del navegador | Configura MCP en la CLI e inspecciona el comportamiento del filtrado |
+| [7. Crear y usar un agente de control de calidad][ex7] | Requisitos y cobertura | Crea y selecciona un perfil especializado y reúne las evidencias de verificación finales |
+| [8. Crear y combinar la PR de la funcionalidad][ex8] | Revisión e integración | Revisa todos los cambios, crea la PR y usa Agent Merge |
+| [9. Comandos slash de GitHub Copilot CLI][ex9] | Funciones de la CLI | Explora el contexto, los modelos, el uso compartido y la delegación opcional al agente en la nube |
+| [10. Repaso y siguientes pasos][ex10] | Resumen | Repasa el flujo de trabajo, las personalizaciones reutilizables y otros recursos |
+| [Opcional: Incorporar Foundry][foundry] | Agentes alojados | Prepara un modelo, despliega un agente basado en el catálogo y conéctalo al sitio web |
 
 ## Requisitos previos
 
-Antes de asistir a este taller, asegúrate de tener:
+Antes de participar en este taller, asegúrate de tener:
 
-- [ ] Una cuenta de GitHub con un plan activo de **Copilot Student, Pro, Pro+, Business o Enterprise**
-- [ ] Conocimientos básicos de operaciones de terminal/línea de comandos
-- [ ] Git instalado y configurado
+- [ ] Una cuenta de GitHub con un plan activo **Copilot Student, Pro, Pro+, Business o Enterprise**
+- [ ] Permiso para crear un repositorio y un Codespace
+- [ ] Conocimientos básicos del terminal o la línea de comandos
 
 > [!TIP]
-> ¿No tienes un plan de pago? Los estudiantes verificados pueden obtener GitHub Copilot gratis a través de [GitHub Education][callout-student-plan-education]. El plan **Copilot Student** incluye las funciones de agente, MCP, revisión de código y Copilot CLI que utiliza este taller, así que puedes completar con él todos los recorridos.
-
-[callout-student-plan-education]: https://github.com/education/students
+> ¿No tienes un plan de pago? Los estudiantes verificados pueden obtener GitHub Copilot gratis a través de [GitHub Education][student-plan]. El plan **Copilot Student** incluye las funciones de agente, MCP, revisión de código y Copilot CLI que se usan en este taller.
 
 > [!NOTE]
-> Si usas Copilot Business o Copilot Enterprise, asegúrate de que tu administrador haya habilitado Copilot CLI.
+> Si usas Copilot Business o Copilot Enterprise, comprueba que el administrador haya habilitado Copilot CLI.
 
 ## Primeros pasos
 
-**[Empieza con el ejercicio 0: Requisitos previos →][ex0]**
+**[Empieza por los requisitos previos →][ex0]**
 
+[about-copilot-cli]: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
+[student-plan]: https://github.com/education/students
 [ex0]: 0-prerequisites/
 [ex1]: 1-install-copilot-cli/
-[ex2]: 2-custom-instructions/
-[ex3]: 3-generating-code/
-[ex4]: 4-mcp/
+[ex2]: 2-add-star-rating/
+[ex3]: 3-agent-modes/
+[ex4]: 4-custom-instructions/
 [ex5]: 5-agent-skills/
-[ex6]: 6-custom-agents/
-[ex7]: 7-slash-commands/
+[ex6]: 6-mcp-playwright/
+[ex7]: 7-qa-agent/
+[ex8]: 8-create-pull-request/
+[ex9]: 9-cli-power-tools/
+[ex10]: 10-review/
 [foundry]: 8-foundry-agent/
-[ex9]: 9-review/
